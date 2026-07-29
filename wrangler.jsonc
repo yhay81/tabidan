@@ -1,0 +1,43 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tabidan",
+  "main": "src/worker.tsx",
+  "compatibility_date": "2026-07-26",
+  "workers_dev": false,
+  "preview_urls": false,
+  "routes": [
+    {
+      "pattern": "tabidan.yhay81.com",
+      "custom_domain": true,
+    },
+  ],
+  "observability": {
+    "enabled": true,
+  },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/", "/privacy", "/api/*", "/t/*", "/healthz"],
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "tabidan",
+      "database_id": "c0698f4b-8686-485d-a316-1c1b2348da82",
+      "migrations_dir": "migrations",
+    },
+  ],
+  "ratelimits": [
+    {
+      "name": "WRITE_LIMITER",
+      "namespace_id": "29072901",
+      "simple": {
+        "limit": 20,
+        "period": 60,
+      },
+    },
+  ],
+  "triggers": {
+    "crons": ["29 3 * * *"],
+  },
+}

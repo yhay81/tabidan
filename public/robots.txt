@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /t/
+Disallow: /api/
+
+Sitemap: https://tabidan.yhay81.com/sitemap.xml
